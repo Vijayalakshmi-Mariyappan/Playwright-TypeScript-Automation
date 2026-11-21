@@ -24,11 +24,11 @@ export default defineConfig({
   use: {
     browserName: 'chromium',
     channel: 'chrome',
-    headless: false,
+    headless: !!process.env.CI,
 
     // Slow down execution for visibility
     launchOptions: {
-      slowMo: 1000,
+      slowMo: process.env.CI ? 0 : 1000,
     },
 
     // Capture screenshot on failure
